@@ -28,7 +28,7 @@ wordnet_lemmatizer = WordNetLemmatizer()
 def load_word_emb(file_name, use_small=False):
     print ('Loading word embedding from %s'%file_name)
     ret = {}
-    with open(file_name) as inf:
+    with open(file_name, encoding='utf-8') as inf:
         for idx, line in enumerate(inf):
             if (use_small and idx >= 500000):
                 break

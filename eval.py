@@ -20,16 +20,16 @@ from src.rule import semQL
 def evaluate(args):
     """
     :param args:
+
     :return:
     """
-
     grammar = semQL.Grammar()
     sql_data, table_data, val_sql_data,\
     val_table_data= utils.load_dataset(args.dataset, use_small=args.toy)
 
     model = IRNet(args, grammar)
 
-    if args.cuda: model.cuda()
+    if args.cuda: model.cpu()
 
     print('load pretrained model from %s'% (args.load_model))
     pretrained_model = torch.load(args.load_model,
@@ -49,7 +49,7 @@ def evaluate(args):
     print('Sketch Acc: %f, Acc: %f' % (sketch_acc, acc))
     # utils.eval_acc(json_datas, val_sql_data)
     import json
-    with open('./predict_lf.json', 'w') as f:
+    with open('./predict_lf.json', 'w', encoding='utf-8') as f:
         json.dump(json_datas, f)
 
 if __name__ == '__main__':

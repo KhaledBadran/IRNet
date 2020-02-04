@@ -298,7 +298,7 @@ class IRNet(BasicModel):
             apply_rule_prob = F.softmax(self.production_readout(att_t), dim=-1)
             table_appear_mask_val = torch.from_numpy(table_appear_mask)
             if self.cuda:
-                table_appear_mask_val = table_appear_mask_val.cuda()
+                table_appear_mask_val = table_appear_mask_val.cpu()
 
             if self.use_column_pointer:
                 gate = F.sigmoid(self.prob_att(att_t))
@@ -610,7 +610,7 @@ class IRNet(BasicModel):
 
             table_appear_mask_val = torch.from_numpy(table_appear_mask)
 
-            if self.args.cuda: table_appear_mask_val = table_appear_mask_val.cuda()
+            if self.args.cuda: table_appear_mask_val = table_appear_mask_val.cpu()
 
             if self.use_column_pointer:
                 gate = F.sigmoid(self.prob_att(att_t))

@@ -38,8 +38,7 @@ def train(args):
 
     model = IRNet(args, grammar)
 
-
-    if args.cuda: model.cuda()
+    if args.cuda: model.cpu()
 
     # now get the optimizer
     optimizer_cls = eval('torch.optim.%s' % args.optimizer)
@@ -72,7 +71,7 @@ def train(args):
     best_dev_acc = .0
 
     try:
-        with open(os.path.join(model_save_path, 'epoch.log'), 'w') as epoch_fd:
+        with open(os.path.join(model_save_path, 'epoch.log'), 'w', encoding='utf-8') as epoch_fd:
             for epoch in tqdm.tqdm(range(args.epoch)):
                 if args.lr_scheduler:
                     scheduler.step()

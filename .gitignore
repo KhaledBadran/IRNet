@@ -328,3 +328,10 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+saved_model/1001580775454/config.json
+*.model
+data/dev.json
+data/tables.json
+data/train.json
+data/glove.42B.300d.txt
+deleteme.py
